@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>ejemplo hola-wasm</title>
+  </head>
+  <body>
+    <script type="module">
+      import init, { greet } from "./pkg/hola_wasm.js";
+      init().then(() => {
+        greet("Hola WebAssembly!");
+      });
+    </script>
+  </body>
+</html>
+
