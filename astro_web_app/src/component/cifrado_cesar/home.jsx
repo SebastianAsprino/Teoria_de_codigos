@@ -1,6 +1,6 @@
 // src/components/CifradoCesarReact.jsx
 import React, { useState } from 'react';
-import init, { cifrar_cesar } from "../wasm/pkg/hola_wasm.js";
+import init, { cifrar_cesar } from "../../wasm/pkg/hola_wasm.js";
 
 function CifradoCesarReact() {
   const [texto, setTexto] = useState('');

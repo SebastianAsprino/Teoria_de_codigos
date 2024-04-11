@@ -1,0 +1,14 @@
+{
+  "name": "hola-wasm",
+  "version": "0.1.0",
+  "files": [
+    "hola_wasm_bg.wasm",
+    "hola_wasm.js",
+    "hola_wasm.d.ts"
+  ],
+  "module": "hola_wasm.js",
+  "types": "hola_wasm.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
