@@ -4,7 +4,15 @@
   background-color: var(--md-sys-color-on-primary-container);
   border-radius: 30px;
   padding: 20px;
-  overflow: hidden;  /* Oculta la scrollbar hasta que se haga hover */
+  overflow: hidden;
+  /* Ajuste automático del tamaño de la fuente */
+  font-size: clamp(12px, 2vw, 24px); /* Mínimo de 12px, máximo de 24px, con ajuste según viewport width */
+  
+  line-height: 1.5;
+  
+  /* Evitar que el texto se salga del contenedor */
+  white-space: normal;
+  word-wrap: break-word;
 }
 
 /* Estilo del scrollbar solo visible en hover */
