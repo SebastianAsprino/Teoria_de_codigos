@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { createComponent } from '@lit/react';
 import { MdOutlinedTextField } from '@material/web/textfield/outlined-text-field';
 import { MdSlider } from '@material/web/slider/slider';
-import init, { cifrar_cesar } from "../../wasm/pkg/hola_wasm.js";
+import init, { descifrar_cesar } from "../../wasm/pkg/hola_wasm.js";
 import './cesar.css'
 
 
@@ -35,8 +35,8 @@ function CifradoCesar() {
   useEffect(() => {
     if (mensaje !== '') {
       init().then(() => {
-        const mensajeCifrado = cifrar_cesar(mensaje, clave);
-        setResultado(mensajeCifrado);
+        const mensajeDesCifrado = descifrar_cesar(mensaje, clave);
+        setResultado(mensajeDesCifrado);
       });
     } else {
       // Si el texto está vacío, limpiar el resultado también
@@ -48,7 +48,7 @@ function CifradoCesar() {
     <>
 
       <OutlinedTextField 
-        label="Texto a cifrar" 
+        label="Texto a descifrar" 
         type="text"
         value={mensaje} 
         onChange={(event) => setMensaje(event.target.value)}
@@ -62,7 +62,7 @@ function CifradoCesar() {
       onChange={(event) => setClave(event.target.value)}
       />
 
-      <h4>El texto cifrado con clave N {clave} es:</h4>
+      <h4>El texto descifrado con clave N {clave} es:</h4>
       <h3 className='contenedor'>{resultado}</h3>
 
     </>
@@ -70,4 +70,3 @@ function CifradoCesar() {
 }
 
 export default CifradoCesar;
-
