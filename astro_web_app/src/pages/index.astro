@@ -1,5 +1,5 @@
 ---
-import Head from "./head.astro";
+import Head from "../style/head.astro";
 import Navbar from "../style/navbar.astro";
 ---
 
@@ -9,7 +9,12 @@ import Navbar from "../style/navbar.astro";
 		<Navbar/>
 		<main>
 			<section>
-				<h2>integrantes:(pedir demas nombres)Sebastian Asprino</h2>
+
+				<h2>integrantes:</h2>
+				<h3>Sebastian Asprino</h3>
+				<h3>Aaron Cabrales</h3>
+				<h3>Brainer Gutierrez</h3>
+				<h2>falta un nombre</h2>
 				<p>Proyectos de Teoria de Codigos recopilados en un solo sitio</p>
 			</section>
 			<section>
@@ -155,6 +160,29 @@ import Navbar from "../style/navbar.astro";
 
 
 
+	section {
+    max-width: 700px;
+    margin: 0 auto 48px;
+  }
+
+  h2 {
+    margin-bottom: 8px;
+    font-weight: 700;
+    line-height: 1.5;
+    font-size: 1.5rem;
+  }
+
+  @media (width <= 700px) {
+    section {
+      margin-bottom: 38px;
+    }
+  }
+
+
+
+
+
+
 	/* h1{ descartado para letras es color de fondo
 		color: var(--md-sys-color-surface)
 	} */
@@ -162,10 +190,10 @@ import Navbar from "../style/navbar.astro";
 		font-family: var(--md-ref-typeface-brand);
 	}
 
-	h1,h2{
+	h1,h2,h3{
 		color: var(--md-sys-color-on-surface)
 	}
-	h3{
+	h5{
 		color: var(--md-sys-color-surface-variant)
 	}
 	h4,p{

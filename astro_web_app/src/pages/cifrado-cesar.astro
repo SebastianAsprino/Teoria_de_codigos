@@ -1,19 +1,21 @@
 ---
 import Cesar from "../component/cifrado_cesar/cesar.astro"
 import Style from "../style/style.astro"
+import Head from "../style/head.astro"
+import Navbar from "../style/navbar.astro"
 
 ---
 
 <html lang="es">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<title>Teoria de Codigos</title>
-	</head>
+  <Head/>
 	<body>
-		<h1>Astro</h1>
-		<Cesar/>
+    <Navbar/>
+    <main>
+
+      <h1>Astro</h1>
+      <Cesar/>
+
+    </main>
 	</body>
 </html>
 
