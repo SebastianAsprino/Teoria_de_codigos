@@ -14,25 +14,8 @@
   white-space: normal;
   word-wrap: break-word;
 }
-
-/* Estilo del scrollbar solo visible en hover */
-/* .contenedor:hover {
-  overflow-y: auto;
-} */
-
-/* Estilo del scrollbar: el carril donde se desliza el thumb */
-/* .contenedor::-webkit-scrollbar {
-  width: 8px;  /* Ancho del scrollbar */
-/* } */
-
-/* .contenedor::-webkit-scrollbar-track { */
-  /* background: transparent;  /* Fondo transparente del carril */
-  /* border-radius: 10px; */
-/* }  */
-
-/* Estilo del thumb del scrollbar */
-/* .contenedor::-webkit-scrollbar-thumb { */
-  /* background-color: blue;  Color azul para el thumb */
-  /* border-radius: 10px;  /* Bordes redondeados para el thumb */
-/* }  */
-
+h4{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: auto;
+}

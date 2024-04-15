@@ -1,0 +1,18 @@
+/* Estilo para centrar los elementos en el <section> */
+.test {
+  display: flex; /* Habilita flexbox */
+  justify-content: left; /* Centra los elementos horizontalmente */
+  align-items: center; /* Centra los elementos verticalmente */
+  gap: 20px; /* Ajusta el espacio entre los elementos */
+  padding: 0px 10px 10px 0px;
+}
+
+/* Estilo para <h2> */
+h2 {
+  margin: 0px; 
+}
+
+/* Estilos para elementos inactivos */
+h2.inactive {
+  color: var(--md-sys-color-surface-variant); /* Puedes cambiar el color según tus preferencias */
+}

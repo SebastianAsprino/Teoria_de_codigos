@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { createComponent } from '@lit/react';
+import init, { cifrar_cesar } from "../../wasm/pkg/hola_wasm.js";
 import { MdOutlinedTextField } from '@material/web/textfield/outlined-text-field';
 import { MdSlider } from '@material/web/slider/slider';
-import init, { cifrar_cesar } from "../../wasm/pkg/hola_wasm.js";
+import '@material/web/dialog/dialog.js';
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
 import './cesar.css'
 
 
@@ -27,10 +30,23 @@ export const Slider = createComponent({
   },
 });
 
+
+
+toastr.options = {
+  "closeButton": true,
+  "progressBar": true,
+  "positionClass": "toast-top-right",
+  "timeOut": "2000"
+};
+
+
+
 function CifradoCesar() {
   const [clave, setClave] = useState(10);
   const [mensaje, setMensaje] = useState('');
   const [resultado, setResultado] = useState('');
+
+
 
   useEffect(() => {
     if (mensaje !== '') {
@@ -44,16 +60,29 @@ function CifradoCesar() {
     }
   }, [mensaje, clave]); // Dependencias: ejecutar cifrado cada vez que cambien `texto` o `clave`
 
+
+  // Función para manejar el evento de clic
+  const handleClick = () => {
+    // Copia el contenido del párrafo al portapapeles
+    navigator.clipboard.writeText(resultado)
+    .then(() => {
+      toastr.success("mensaje cifrado copiado con exito");
+    })
+    .catch(err => {
+      console.error('Error al copiar texto:', err);
+    });
+    };
+
+
+
   return (  
     <>
-
       <OutlinedTextField 
         label="Texto a cifrar" 
         type="text"
         value={mensaje} 
         onChange={(event) => setMensaje(event.target.value)}
       />
-
       <Slider
       labeled
       min="0" 
@@ -61,13 +90,12 @@ function CifradoCesar() {
       value={clave} 
       onChange={(event) => setClave(event.target.value)}
       />
-
       <h4>El texto cifrado con clave N {clave} es:</h4>
-      <h3 className='contenedor'>{resultado}</h3>
-
+      <h3 className='contenedor' onClick={handleClick} style={{ cursor: 'pointer' }}>
+        {resultado}
+      </h3>
     </>
   );
 }
 
 export default CifradoCesar;
-

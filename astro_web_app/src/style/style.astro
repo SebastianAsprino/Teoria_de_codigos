@@ -24,7 +24,7 @@
 		--md-sys-color-background: rgb(255 248 247);
 		--md-sys-color-on-background: rgb(34 25 26);
 		--md-sys-color-surface: rgb(255 248 247);
-		--md-sys-color-on-surface: rgb(34 25 26);
+		--md-sys-color-on-surface: rgb(34 25 26);	
 		--md-sys-color-surface-variant: rgb(244 221 221);
 		--md-sys-color-on-surface-variant: rgb(82 67 68);
 		--md-sys-color-outline: rgb(133 115 115);
@@ -94,7 +94,7 @@
   h4 {
     margin: 0;
   }
-	
+
 	p {
     font-size: 0.9rem;
     line-height: 1.5;
@@ -112,6 +112,28 @@
 
 
 
+  section {
+    max-width: 700px;
+    margin: 0 auto 48px;
+  }
+
+  h2 {
+    margin-bottom: 8px;
+    font-weight: 700;
+    line-height: 1.5;
+    font-size: 1.5rem;
+  }
+
+  @media (width <= 700px) {
+    section {
+      margin-bottom: 38px;
+    }
+  }
+
+
+
+
+
 	/* h1{ descartado para letras es color de fondo
 		color: var(--md-sys-color-surface)
 	} */
@@ -119,10 +141,10 @@
 		font-family: var(--md-ref-typeface-brand);
 	}
 
-	h1,h2{
+	h1,h2,h3{
 		color: var(--md-sys-color-on-surface)
 	}
-	h3{
+	h5{
 		color: var(--md-sys-color-surface-variant)
 	}
 	h4,p{
