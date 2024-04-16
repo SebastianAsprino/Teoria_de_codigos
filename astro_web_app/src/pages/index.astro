@@ -11,17 +11,17 @@ import Style from "../style/style.astro"
 		<Navbar/>
 		<main>
 			<section>
+				<md-filled-button onclick="window.location.href='/cifrado-cesar'">Cifrado Cesar</md-filled-button>
+				<md-filled-button onclick="window.location.href='/matriz'">Matriz Generadora</md-filled-button>
+				<md-filled-button onclick="window.location.href='/codigo-dual'">Codigo Dual</md-filled-button>
+			</section>
+			<section>
 				<h2>integrantes:</h2>
 				<h3>Sebastian Asprino</h3>
 				<h3>Aaron Cabrales</h3>
 				<h3>Brainer Gutiérrez</h3>
 				<h3>Oskleiderbeth Vásquez</h3>
 				<p>Proyectos de Teoria de Codigos recopilados en un solo sitio</p>
-			</section>
-			<section>
-				<md-filled-button onclick="window.location.href='/cifrado-cesar'">Cifrado Cesar</md-filled-button>
-				<md-filled-button onclick="window.location.href='/matriz'">Matriz Generadora(sin implementar)</md-filled-button>
-				<md-filled-button onclick="window.location.href='/codigo-dual'">Codigo Dual(sin implementar)</md-filled-button>
 			</section>
 		</main>
     <Home/>
@@ -35,3 +35,14 @@ import Style from "../style/style.astro"
 </script>
 
 
+<style>
+	md-filled-button{
+		margin: 10px;
+	}
+
+	@media (width <= 700px) {
+    md-filled-button {
+      margin: 12px;
+    }
+  }
+</style>

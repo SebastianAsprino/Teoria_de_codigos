@@ -92,6 +92,7 @@ function CifradoCesar() {
       />
       <h4>El texto cifrado con clave N {clave} es:</h4>
       <h3 className='contenedor' onClick={handleClick} style={{ cursor: 'pointer' }}>
+        <title>mensaje cifrado</title>
         {resultado}
       </h3>
     </>

@@ -92,6 +92,7 @@ function DesCifradoCesar() {
       />
       <h4>El texto descifrado con clave N {clave} es:</h4>
       <h3 className='contenedor' onClick={handleClick} style={{ cursor: 'pointer' }}>
+      <title>mensaje descifrado</title>
         {resultado}
       </h3>
     </>
