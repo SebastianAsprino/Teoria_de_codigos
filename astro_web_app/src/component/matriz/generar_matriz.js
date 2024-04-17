@@ -1,6 +1,4 @@
-import islineal from "./islineal";
-
-function findBasis(code, base) {
+export function findBasis(code, base) {
   // Generate an array with the elements of the code
   const codes = code.split(", ");
   // Initialize an empty array that will represent the elements of the basis
@@ -25,7 +23,7 @@ function findBasis(code, base) {
     let independent = true;
     for (let i = 0; i < basis.length; i++) {
       for (let j = i + 1; j < basis.length; j++) {
-        const linearCombination = codewordList.map((bit, index) => (bit - basis[i][index] - basis[j][index]) % base);
+        const linearCombination = basis[i].map((_, idx) => (codewordList[idx] - basis[i][idx] - basis[j][idx]) % base);
         if (linearCombination.every(bit => bit === 0)) {
           independent = false;
           break;
@@ -45,36 +43,16 @@ function findBasis(code, base) {
   return basis;
 }
 
-function getParameters(basis) {
-  // Code dimension = number of rows in G
+export function getParameters(basis) {
+  // Dimension of the code = number of rows in G
   const k = basis.length;
 
   // n = number of columns in G
   const n = basis[0].length;
 
-  // d = minimum distance of a word to another
+  // d = minimum distance of one word to another
   const d = Math.min(...basis.map(row => row.reduce((sum, bit) => sum + bit, 0)));
 
-  return { k, n, d };
-}
-
-function isLinear1(code, base) {
-  const basis = findBasis(code, base);
-  const { k, n, d } = getParameters(basis);
-
-  console.log('Generator matrix:', basis);
-  console.log('Parameters:');
-  console.log('k:', k);
-  console.log('n:', n);
-  console.log('d:', d);
-
-  return true;
-}
-
-const code = "011, 110, 000, 101";
-if (isLinear1(code, 2)) {
-  console.log('It is a linear code');
-} else {
-  console.log('It is not a linear code');
+  return [k, n, d];
 }
 
