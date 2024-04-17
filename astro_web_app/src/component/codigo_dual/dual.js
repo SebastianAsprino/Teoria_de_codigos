@@ -1,4 +1,4 @@
-import numeric from 'numeric-js';
+import numeric from 'numeric';
 import _ from 'lodash';
 
 // let _ = require('lodash');
@@ -109,7 +109,7 @@ function getHMatrix(G_str, base) {
     return H;
 }
 
-function getDualCode(matrizStr, base) {
+export function getDualCode(matrizStr, base) {
     const H = getHMatrix(matrizStr, base);
     const n = H[0].length;
     const dualCodeWords = generateCodewordsFromJS(H, n, base);

@@ -110,12 +110,3 @@ const CodeInfo = () => {
 };
 
 export default CodeInfo;
-
-
-
-
-
-
-
-
-
