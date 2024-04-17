@@ -52,10 +52,9 @@
 
 use wasm_bindgen::prelude::*;
 
-// Necesitas esta línea para habilitar wasm_bindgen
 #[wasm_bindgen]
 extern "C" {
-    // Aquí puedes añadir funciones de la biblioteca estándar de JavaScript o de la Web API que quieras usar
+    
 }
 
 #[wasm_bindgen]
