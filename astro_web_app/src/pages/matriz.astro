@@ -3,13 +3,19 @@ import Style from "../style/style.astro"
 import Head from "../style/head.astro"
 import Navbar from "../style/navbar.astro"
 import Home from "../style/home.astro"
+
+import MatrizGeneradora from "../component/matriz/matriz_generadora.astro"
 ---
 
 <html lang="es">
   <Head/>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.21.3/full/pyodide.js"></script>
 	<body>
     <Navbar/>
     <main>
+
+      <MatrizGeneradora/>
+
       <p>en desarrollo</p>
     </main>
     <Home/>
@@ -17,3 +23,4 @@ import Home from "../style/home.astro"
 </html>
 
 <Style/>
+

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdn.jsdelivr.net/pyodide/v0.21.3/full/pyodide.js"></script>
+<script>
+  (async () => { // create anonymous async function to enable await
+    const pyodide = await loadPyodide();
+    console.log(pyodide.runPython(`
+import sys
+sys.version
+    `));
+    await pyodide.loadPackage('numpy');
+// numpy is now available
+pyodide.runPython('import numpy as np')
+// create a numpy array
+np_array = pyodide.runPython('np.ones((3, 3))')
+// convert Python array to JS array
+np_array = np_array.toJs()
+console.log(np_array) 
+
+  })();
+   // call the async function immediately
+</script>
+</head>
+<body>
+</body>
+</html>

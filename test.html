@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sumar con Pyodide</title>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.21.3/full/pyodide.js"></script>
+    <script type="text/javascript">
+        async function main() {
+            let pyodide = await loadPyodide();
+
+            // Define la función de suma en Python
+            pyodide.runPython(`
+                def sum(a, b):
+                    return a + b
+            `);
+
+            // Acceso a la función de suma desde JavaScript
+            window.sum = (a, b) => pyodide.runPython(`sum(${a}, ${b})`);
+        }
+
+        async function calculateAndDisplayResult() {
+            const numA = parseInt(document.getElementById('numA').value);
+            const numB = parseInt(document.getElementById('numB').value);
+            const result = await window.sum(numA, numB);
+            document.getElementById('result').innerText = 'Resultado: ' + result;
+        }
+
+        window.addEventListener("load", main);
+    </script>
+</head>
+<body>
+    <h1>Sumador</h1>
+    <form onsubmit="event.preventDefault(); calculateAndDisplayResult();">
+        <input type="number" id="numA" required placeholder="Ingrese número A">
+        <input type="number" id="numB" required placeholder="Ingrese número B">
+        <button type="submit">Sumar</button>
+    </form>
+    <h3 id="result"></h3>
+</body>
+</html>
+
