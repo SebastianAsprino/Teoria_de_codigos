@@ -95,7 +95,7 @@ const CodeInfo = () => {
       />
 
 
-      <FilledButton onclick={handleProcessCodeLineal}>Cifrado Cesar</FilledButton>
+      <FilledButton onclick={handleProcessCodeLineal}>Generar matriz</FilledButton>
 
 
       <div>
