@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
   const [pyodide, setPyodide] = useState(null);
@@ -70,30 +70,31 @@ function App() {
       setPyodide(loadedPyodide);
     }
 
-    loadPyodide();
+    loadPyodide().catch((error) => {
+      console.error('No se pudo cargar Pyodide:', error);
+    });
   }, []);
 
   const handleCheckLinearity = async (event) => {
     event.preventDefault();
-    if (pyodide) {
-      const linearResult = pyodide.runPython(`
-        is_linear("${codesStr}", ${base})
-      `);
-      setResult(linearResult ? "Su código es lineal" : "Su código no es lineal");
-    }
+    if (!pyodide) return;
+    // Call the Python function directly instead of interpolating user input into code
+    const isLinear = pyodide.globals.get('is_linear');
+    const linearResult = isLinear(codesStr, Number(base));
+    setResult(linearResult ? "Su código es lineal" : "Su código no es lineal");
   };
 
-  const handleGenerateMatrix = async () => {
-    const basis1 = await pyodide.runPython(`
-      find_basis('${codesStr}', ${base})
-    `);
-  
+  const handleGenerateMatrix = () => {
+    if (!pyodide) return;
+    const findBasis = pyodide.globals.get('find_basis');
+    const getParameters = pyodide.globals.get('get_parameters');
+    const basisProxy = findBasis(codesStr, Number(base));
+    const basis1 = basisProxy.toJs();
+
     if (basis1.length > 0) {
-      const { k, n, d } = await pyodide.runPython(`
-        get_parameters(${basis1})
-      `);
-  
-      setGeneratorMatrix(basis1);
+      const [k, n, d] = getParameters(basisProxy).toJs();
+
+      setGeneratorMatrix(JSON.stringify(basis1));
       setParameters({ k, n, d });
     } else {
       setGeneratorMatrix("No se pudo encontrar una base válida.");
@@ -119,7 +120,7 @@ function App() {
           placeholder="Base numérica"
         />
         <button type="submit">Verificar Linealidad</button>
-        <button onClick={handleGenerateMatrix}>Generar Matriz y Parámetros</button>
+        <button type="button" onClick={handleGenerateMatrix}>Generar Matriz y Parámetros</button>
       </form>
       {result && <h3>{result}</h3>}
       {generatorMatrix && <p>Matriz Generadora: {generatorMatrix}</p>}

@@ -44,6 +44,11 @@ export function findBasis(code, base) {
 }
 
 export function getParameters(basis) {
+  // An empty basis (e.g. the zero code) has no generator rows
+  if (basis.length === 0) {
+    return [0, 0, 0];
+  }
+
   // Dimension of the code = number of rows in G
   const k = basis.length;
 

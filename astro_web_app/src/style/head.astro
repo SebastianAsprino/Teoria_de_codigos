@@ -1,5 +1,8 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
+
+// Cada página declara su propia URL canónica a partir de `site` (astro.config.mjs).
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <head>
@@ -8,6 +11,6 @@ import { ViewTransitions } from 'astro:transitions';
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <ViewTransitions />
   <meta name="generator" content={Astro.generator} />
-  <link rel="canonical" href="https://teoria-de-codigo.asprino.tech/">
+  <link rel="canonical" href={canonicalURL} />
   <title>Teoria de Codigos</title>
 </head>

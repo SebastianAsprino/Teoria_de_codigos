@@ -1,77 +1,45 @@
-import React, { useState, useEffect } from 'react';
-import { createComponent } from '@lit/react';
-import { MdOutlinedTextField } from '@material/web/textfield/outlined-text-field';
-import {isLinear} from './islineal'
-import { getParameters, findBasis } from './generar_matriz'
-import {MdFilledButton} from '@material/web/button/filled-button';
+import { useState } from 'react';
+import { isLinear } from './islineal';
+import { getParameters, findBasis } from './generar_matriz';
+import { FilledButton, OutlinedTextField } from '../shared/material.js';
 
+const BASE_INICIAL = 2;
+const COLAB_GENERAR_CODIGO_URL =
+  'https://colab.research.google.com/drive/1xt0gHHE9YOMlyMDDb1JLEH-l95jPTk5D#scrollTo=4pcM0EAMa03l&line=5&uniqifier=1';
 
-
-export const OutlinedTextField = createComponent({
-  tagName: 'md-outlined-text-field',
-  elementClass: MdOutlinedTextField,
-  react: React,
-  events: {
-    onChange: 'input', 
-  },
-});
-
-
-
-export const FilledButton = createComponent({
-  tagName: 'md-filled-button',
-  elementClass: MdFilledButton,
-  react: React,
-  events: {
-    onChange: 'onclick', 
-  },
-});
-
-
-
+/**
+ * Comprueba si un código es lineal y, en ese caso, muestra sus parámetros [n, k, d]
+ * y su matriz generadora.
+ */
 const CodeInfo = () => {
-  
   const [codeLineal, setCodeLineal] = useState('');
-  const [base, setBase] = useState(2); 
+  const [base, setBase] = useState(BASE_INICIAL);
   const [logs, setLogs] = useState([]);
 
-  
   const handleCodeLinealChange = (event) => {
     setCodeLineal(event.target.value);
   };
 
-  
   const handleBaseChange = (event) => {
     setBase(parseInt(event.target.value, 10));
   };
 
-  
   const handleProcessCodeLineal = () => {
-    
-    let logsArray = [];
+    const logsArray = [`Código Lineal: ${codeLineal}`];
 
-    
-    logsArray.push(`Código Lineal: ${codeLineal}`);
-
-    
     if (isLinear(codeLineal, base)) {
-      let basis1 = findBasis(codeLineal, base);
-      const [k, n, d] = getParameters(basis1);
-      
-      
+      const basis = findBasis(codeLineal, base);
+      const [k, n, d] = getParameters(basis);
+
       logsArray.push(`k: ${k}, n: ${n}, d: ${d}`);
-      
-      
       logsArray.push('Matriz generadora:');
-      basis1.forEach((row) => {
-        
+      basis.forEach((row) => {
         logsArray.push(`[${row.join(', ')}]`);
       });
     } else {
-      logsArray.push("No es un código lineal");
+      logsArray.push('No es un código lineal');
     }
 
-    
     setLogs(logsArray);
   };
 
@@ -79,24 +47,21 @@ const CodeInfo = () => {
     <div>
       <h2>Matriz Generadora</h2>
 
-      <OutlinedTextField 
-        label="Ingresa Codigo Lineal" 
+      <OutlinedTextField
+        label="Ingresa Codigo Lineal"
         type="text"
-        value={codeLineal} 
+        value={codeLineal}
         onChange={handleCodeLinealChange}
       />
 
-
-      <OutlinedTextField  
-        label="Ingresa Base" 
+      <OutlinedTextField
+        label="Ingresa Base"
         type="number"
-        value={base} 
+        value={base}
         onChange={handleBaseChange}
       />
 
-
-      <FilledButton onclick={handleProcessCodeLineal}>Generar matriz</FilledButton>
-
+      <FilledButton onClick={handleProcessCodeLineal}>Generar matriz</FilledButton>
 
       <div>
         {logs.map((log, index) => (
@@ -104,7 +69,7 @@ const CodeInfo = () => {
         ))}
       </div>
       <h2>Generar codigo a partir de matriz (Collab):</h2>
-      <md-filled-button onclick="window.location.href='https://colab.research.google.com/drive/1xt0gHHE9YOMlyMDDb1JLEH-l95jPTk5D#scrollTo=4pcM0EAMa03l&line=5&uniqifier=1'">Generar Codigo</md-filled-button>
+      <FilledButton href={COLAB_GENERAR_CODIGO_URL}>Generar Codigo</FilledButton>
     </div>
   );
 };

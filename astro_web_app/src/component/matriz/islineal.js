@@ -21,26 +21,3 @@ function isValidCodeword(code1, code2, base, codes) {
   // Return true if the resulting element is in the code, i.e., is closed under the sum
   return codes.includes(sumCodeStr);
 }
-
-const codesStr = "011, 110, 000, 101";
-const base = 2;
-
-export default {isLinear}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
